@@ -1,0 +1,53 @@
+<h3>Enter the details to add a person</h3>
+   <div>
+ <div>
+  <label>Name:</label>
+   <input name="name" placeholder="Enter name" #name>
+   </div>
+   
+   <div>
+   <label>Id:</label>
+   <input name="id" placeholder="Enter id" #id>
+   </div>
+   
+   <div>
+   <label>Salary:</label>
+   <input name="salary" placeholder="Enter salary" #salary>
+   </div>
+   
+ <div>  
+  <button (click)="onClickAdd(name.value,id.value,salary.value)">Add a person</button>
+  </div>
+</div>
+<br><br><br>
+
+ <div *ngIf="table" >
+  <table border="1" style="width:100%">
+	<thead>
+		<tr>
+			<td><b>S.No</b></td>
+			<td><b>Name</b></td>
+			<td><b>Id</b></td>
+			<td><b>Salary</b></td>
+			<td><b>Actions</b></td>
+		</tr>
+	</thead>
+	<tbody *ngIf="persons">
+		<tr *ngFor="let person of persons; let i=index">
+			<td>[{{i + 1}}]</td>
+			<td>{{person.name}}</td>
+			<td>{{person.id}}</td>
+			<td>{{person.salary}}</td>
+			<td><button (click)="onDelete(person.id)">Delete</button><button (click)="onView(person)">View</button></td>		
+		</tr>
+	</tbody>
+  </table>
+  </div>
+  
+  <div *ngIf="show">
+  <h3>Details of {{person.name}}</h3>
+  <label><b>Name:</b>{{person.name}}</label>
+  <label><b>Id:</b>{{person.id}}</label>
+  <label><b>Salary:</b>{{person.salary}}</label>
+  </div>
+
