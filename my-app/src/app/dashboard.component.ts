@@ -14,14 +14,11 @@ export class DashboardComponent{
   show = false;
   person:Person;
   table= false;
+  editable = false;
   
-  constructor(private router: Router) { }
+  constructor(private router: Router){ }
   
   onClickAdd(name,id,salary):void{
-  console.log("coming into add function");
-  console.log("Name is: "+name);
-  console.log("Id is: "+id);
-  console.log("Salary is: "+salary);
   this.persons.push({id:id,name:name,salary:salary});
   this.table=true;
   }
@@ -44,6 +41,28 @@ export class DashboardComponent{
 	  this.show =true;
 	  this.person = person;
   }
+  
+  onEdit(person):void{
+	  this.editable =true;
+	  this.person = person;
+	  this.show = false;
+  }
+  
+  onModify(name,id,salary):void{
+	let allPersons = this.persons;
+	 for(let i=0;i<allPersons.length;i++){
+		  if(allPersons[i].id == id){
+			allPersons[i].name= name;
+			allPersons[i].id = id;
+			allPersons[i].salary = salary;
+		  } 
+	  }
+	  this.editable = false;
+  }
+ 
+ //goBack():void{
+	//  this.editable = false;
+//  }
 }
 
 

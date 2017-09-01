@@ -38,7 +38,7 @@
 			<td>{{person.name}}</td>
 			<td>{{person.id}}</td>
 			<td>{{person.salary}}</td>
-			<td><button (click)="onDelete(person.id)">Delete</button><button (click)="onView(person)">View</button></td>		
+			<td><button (click)="onDelete(person.id)">Delete</button><button (click)="onView(person)">View</button><button (click)="onEdit(person)">Edit</button></td>		
 		</tr>
 	</tbody>
   </table>
@@ -50,4 +50,26 @@
   <label><b>Id:</b>{{person.id}}</label>
   <label><b>Salary:</b>{{person.salary}}</label>
   </div>
+  
+<div *ngIf="editable">
+<h3>Edit details of {{person.name}}</h3>
+	<div>
+		<label>Name:</label>
+		<input type="text" [(ngModel)]="person.name" #editName/>
+	</div>
 
+	<div>
+		<label>Id:</label>
+		<input type="number" [(ngModel)]="person.id" #editId/>
+	</div>
+
+	<div>
+		<label>Salary:</label>
+		<input type="text" [(ngModel)]="person.salary" #editSalary>
+	</div>
+	<div>
+		<button (click)="onModify(editName.value,editId.value,editSalary.value)">Save</button>
+		<!-- <button (click)="goBack()">Cancel</button> -->
+	</div>
+
+  </div>
